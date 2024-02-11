@@ -3,11 +3,25 @@ import "./main.css";
 
 // Module imports
 import api from "./components/api";
+import view from "./components/view";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const getWeatherButton = document.getElementById("get-weather-button");
-  getWeatherButton.onclick = api.getWeather;
+  const searchButton = document.getElementById("search-form");
+  searchButton.onsubmit = async (event) => {
+    event.preventDefault();
+    const query = event.target.elements["query"].value;
 
-  const getForecastButton = document.getElementById("get-forecast-button");
-  getForecastButton.onclick = api.getForecast;
+    // wait for async function to resolve and store response data
+    try {
+      const weather = await api.getWeather(query);
+      console.log(weather);
+      console.log("Location: " + weather.location);
+      console.log("Temperature: " + weather.tempf + "F");
+      console.log("Feels Like: " + weather.feelslikef + "F");
+
+      view.updateLocation(weather);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 });
