@@ -1,6 +1,8 @@
 const view = (() => {
   // constants
-  const location = document.getElementById("location");
+  const currentWeather = document.getElementById("current-weather");
+  const name = document.getElementById("name");
+  const region = document.getElementById("region");
   const currentConditions = document.getElementById("current-conditions");
   const conditionsIcon = document.getElementById("conditions-icon");
   const temp = document.getElementById("temp");
@@ -10,7 +12,12 @@ const view = (() => {
   const vis = document.getElementById("vis");
 
   const updateWeather = (weather) => {
-    location.innerHTML = weather.location;
+    if (!currentWeather.classList.contains("visible")) {
+      currentWeather.classList.add("visible");
+    }
+
+    name.innerHTML = weather.location;
+    region.innerHTML = weather.region;
     currentConditions.innerHTML = weather.conditions.text;
     conditionsIcon.src = weather.conditions.icon;
     temp.innerHTML = Math.trunc(weather.tempf) + "°F";

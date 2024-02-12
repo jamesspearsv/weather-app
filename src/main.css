@@ -30,12 +30,18 @@ div#body-container {
   grid-template-rows: repeat(3, min-content);
   grid-template-columns: repeat(4, 1fr);
   gap: var(--padding);
-  justify-content: start;
+  justify-items: center;
   width: min(95%, 500px);
   margin: auto;
   padding: var(--padding);
   background-color: var(--color-accent);
   border-radius: var(--padding);
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+#current-weather.visible {
+  opacity: 1;
 }
 
 #location {
