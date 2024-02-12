@@ -1,6 +1,7 @@
 :root {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --padding: 15px;
+  --color-accent: #e0e0e0;
 }
 
 * {
@@ -11,14 +12,63 @@
 
 nav {
   width: 100%;
-  padding: var(--padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding) 20%;
   text-align: center;
-  background-color: wheat;
+  border-bottom: solid 1px var(--color-accent);
 }
 
 div#body-container {
   text-align: center;
   margin: var(--padding);
+}
+
+#current-weather {
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--padding);
+  justify-content: start;
+  width: min(95%, 500px);
+  margin: auto;
+  padding: var(--padding);
+  background-color: var(--color-accent);
+  border-radius: var(--padding);
+}
+
+#location {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 4;
+}
+
+#current-conditions {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 2;
+}
+
+#conditions-icon {
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 1;
+}
+
+#temp-container {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+}
+
+#weather-details {
+  grid-row: 2 / span 2;
+  grid-column: 3 / span 2;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#weather-details > div {
+  padding: 5px;
+  border-bottom: #ffffff solid 1px;
 }
 
 footer {
@@ -28,5 +78,4 @@ footer {
   right: 0;
   padding: var(--padding);
   text-align: center;
-  background-color: wheat;
 }

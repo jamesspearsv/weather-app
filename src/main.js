@@ -18,8 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Location: " + weather.location);
       console.log("Temperature: " + weather.tempf + "F");
       console.log("Feels Like: " + weather.feelslikef + "F");
+      console.log(weather.conditions.icon);
 
-      view.updateLocation(weather);
+      view.updateWeather(weather);
+      event.target.reset();
     } catch (error) {
       console.log(error);
     }

@@ -21,8 +21,12 @@ const api = (() => {
         feelslikec: data.current.feelslike_c,
         humidity: data.current.humidity,
         location: data.location.name,
+        region: data.location.region,
         tempf: data.current.temp_f,
         tempc: data.current.temp_c,
+        windmph: data.current.wind_mph,
+        winddir: data.current.wind_dir,
+        vis: data.current.vis_miles,
       };
       return weather;
     } catch (error) {
@@ -37,7 +41,6 @@ const api = (() => {
       );
       const data = await response.json();
       console.log(data);
-      let forecast = {};
     } catch (error) {
       console.log("Error fetching data => " + error);
     }

@@ -7,6 +7,7 @@
   </head>
   <body>
     <nav>
+      <h1>Weather App!</h1>
       <div class="form-container">
         <form id="search-form">
           <input type="text" name="query" />
@@ -15,8 +16,24 @@
       </div>
     </nav>
     <div id="body-container">
-      <h1>Weather App!</h1>
-      <h2 id="location">Location</h2>
+      <div id="current-weather">
+        <h2 id="location">Location</h2>
+        <div id="current-conditions">Current Conditions</div>
+        <img
+          src="http://cdn.weatherapi.com/weather/64x64/night/116.png"
+          alt=""
+          id="conditions-icon"
+        />
+        <div id="temp-contaienr">
+          <div id="temp">45 F</div>
+          <div id="feels-like">Feels like 42 F</div>
+        </div>
+        <div id="weather-details">
+          <div id="wind">Wind speed: 5 mph</div>
+          <div id="humidity">Humidity: 40%</div>
+          <div id="vis">Visibility: 6 miles</div>
+        </div>
+      </div>
     </div>
     <footer>
       <div id="link-back">
