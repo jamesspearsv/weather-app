@@ -2,6 +2,7 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --padding: 15px;
   --color-accent: #e0e0e0;
+  --padding-span: 5px;
 }
 
 * {
@@ -13,8 +14,11 @@
 nav {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  gap: var(--padding);
+  justify-content: center;
+  align-items: center;
   padding: var(--padding) 20%;
   text-align: center;
   border-bottom: solid 1px var(--color-accent);
@@ -22,8 +26,10 @@ nav {
 
 div#body-container {
   text-align: center;
-  margin: var(--padding);
+  padding: var(--padding);
 }
+
+/* Current Weather Styles */
 
 #current-weather {
   display: grid;
@@ -32,16 +38,10 @@ div#body-container {
   gap: var(--padding);
   justify-items: center;
   width: min(95%, 500px);
+  min-height: 200px;
   margin: auto;
   padding: var(--padding);
-  background-color: var(--color-accent);
   border-radius: var(--padding);
-  opacity: 0;
-  transition: opacity 500ms ease-in-out;
-}
-
-#current-weather.visible {
-  opacity: 1;
 }
 
 #location {
@@ -73,8 +73,64 @@ div#body-container {
 }
 
 #weather-details > div {
-  padding: 5px;
-  border-bottom: #ffffff solid 1px;
+  padding: var(--padding-span);
+}
+
+/* Forecast styles */
+#forecast-container {
+  width: min(95%, 500px);
+  margin: auto;
+  margin-top: 2%;
+  padding: var(--padding);
+}
+#forecast {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: var(--padding);
+}
+
+.day {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  justify-items: center;
+}
+
+.day-date {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 2;
+}
+
+.day-date > span {
+  margin: var(--padding-span);
+}
+
+.day-icon {
+  grid-row: 2 / span 3;
+  grid-column: 1 / span 1;
+}
+
+.condition {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+}
+
+.hilo {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+}
+
+.hilo > span {
+  margin: 5px;
+}
+
+.chance-of-rain {
+  grid-row: 4 / span 1;
+  grid-column: 2 / span 1;
 }
 
 footer {
@@ -83,5 +139,6 @@ footer {
   left: 0;
   right: 0;
   padding: var(--padding);
+  background-color: white;
   text-align: center;
 }

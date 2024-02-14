@@ -45,6 +45,7 @@ const api = (() => {
 
       data.forecast.forecastday.forEach((day) => {
         const dailyForecast = {
+          date: day.date,
           high: day.day.maxtemp_f,
           low: day.day.mintemp_f,
           humidity: day.day.avghumidity,

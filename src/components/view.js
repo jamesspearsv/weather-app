@@ -12,10 +12,6 @@ const view = (() => {
   const vis = document.getElementById("vis");
 
   const updateWeather = (weather) => {
-    if (!currentWeather.classList.contains("visible")) {
-      currentWeather.classList.add("visible");
-    }
-
     name.innerHTML = weather.location;
     region.innerHTML = weather.region;
     currentConditions.innerHTML = weather.conditions.text;
@@ -28,7 +24,20 @@ const view = (() => {
   };
 
   const updateForecast = (forecast) => {
-    console.log(forecast);
+    const week = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    forecast.forEach((day) => {
+      console.log(day);
+      // todo => build forecast ui for each day returned in forecast
+    });
   };
 
   return { updateWeather, updateForecast };
