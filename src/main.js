@@ -13,14 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // wait for async function to resolve and store response data
     try {
-      const weather = await api.getWeather(query);
-      console.log(weather);
-      console.log("Location: " + weather.location);
-      console.log("Temperature: " + weather.tempf + "F");
-      console.log("Feels Like: " + weather.feelslikef + "F");
-      console.log(weather.conditions.icon);
+      // Call api and await both calls to resolve
+      const data = await Promise.all([
+        api.getWeather(query),
+        api.getForecast(query),
+      ]);
+
+      // Destructure data more semantic naming
+      const [weather, forecast] = data;
 
       view.updateWeather(weather);
+      view.updateForecast(forecast);
       event.target.reset();
     } catch (error) {
       console.log(error);

@@ -27,8 +27,8 @@ const view = (() => {
     vis.innerHTML = "Visibility: " + Math.trunc(weather.vis) + " miles";
   };
 
-  const updateForecast = (weather) => {
-    // TODO
+  const updateForecast = (forecast) => {
+    console.log(forecast);
   };
 
   return { updateWeather, updateForecast };

@@ -10,9 +10,7 @@ const api = (() => {
         { mode: "cors" }
       );
 
-      if (!response.ok) {
-        return Promise.reject(new Error("Response status " + response.status));
-      }
+      if (!response.ok) throw `Response status ${response.status}`;
 
       const data = await response.json();
       const weather = {
@@ -34,15 +32,33 @@ const api = (() => {
     }
   };
 
-  const getForecast = async () => {
+  const getForecast = async (query) => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=New York&days=3&aqi=no&alerts=no`
+        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`
       );
+
+      if (!response.ok) throw `Response status: ${response.status}`;
+
       const data = await response.json();
-      console.log(data);
+      const forecast = [];
+
+      data.forecast.forecastday.forEach((day) => {
+        const dailyForecast = {
+          high: day.day.maxtemp_f,
+          low: day.day.mintemp_f,
+          humidity: day.day.avghumidity,
+          chanceofrain: day.day.daily_chance_of_rain,
+          condition: day.day.condition.text,
+          conditionIcon: day.day.condition.icon,
+        };
+
+        forecast.push(dailyForecast);
+      });
+
+      return forecast;
     } catch (error) {
-      console.log("Error fetching data => " + error);
+      throw Error(error);
     }
   };
 
