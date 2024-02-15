@@ -6,6 +6,14 @@ import api from "./components/api";
 import view from "./components/view";
 
 document.addEventListener("DOMContentLoaded", () => {
+  const searchForm = document.getElementById("query");
+  searchForm.oninput = async (event) => {
+    const query = event.target.value;
+    if (query === "") return;
+    const results = await api.getSuggestions(query);
+    view.updateResults(results);
+  };
+
   const searchButton = document.getElementById("search-form");
   searchButton.onsubmit = async (event) => {
     event.preventDefault();

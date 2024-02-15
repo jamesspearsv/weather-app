@@ -12,8 +12,12 @@ const view = (() => {
   const humidity = document.getElementById("humidity");
   const vis = document.getElementById("vis");
   const forecastElement = document.getElementById("forecast");
+  const searchInput = document.getElementById("query");
+  const searchForm = document.getElementById("search-form");
+  const searchSuggestions = document.getElementById("search-suggestions");
 
   const updateWeather = (weather) => {
+    utilities.removeChildren(searchSuggestions);
     name.innerHTML = weather.location;
     region.innerHTML = weather.region;
     currentConditions.innerHTML = weather.conditions.text;
@@ -51,11 +55,13 @@ const view = (() => {
       icon.classList.add("day-icon");
       icon.src = day.condition.icon;
       dayElement.appendChild(icon);
+
       // condition text
       const condition = document.createElement("div");
       condition.classList.add("condition");
       condition.textContent = day.condition.text;
       dayElement.appendChild(condition);
+
       // hilo
       const hilo = document.createElement("div");
       hilo.classList.add("hilo");
@@ -68,6 +74,7 @@ const view = (() => {
       const lo = document.createElement("span");
       lo.textContent = Math.trunc(day.lo) + "°F";
       hilo.appendChild(lo);
+
       // change of rain
       const chanceOfRain = document.createElement("div");
       chanceOfRain.classList.add("chance-of-rain");
@@ -76,7 +83,25 @@ const view = (() => {
     });
   };
 
-  return { updateWeather, updateForecast };
+  const updateResults = (results) => {
+    utilities.removeChildren(searchSuggestions);
+
+    results.forEach((result) => {
+      const resultElement = document.createElement("div");
+      resultElement.textContent = `${result.location}, ${result.region}`;
+      resultElement.setAttribute("data-url", result.url);
+      resultElement.classList.add("search-result");
+      resultElement.onclick = (event) => {
+        searchInput.value = event.target.getAttribute("data-url");
+        searchForm.requestSubmit();
+
+        utilities.removeChildren(searchSuggestions);
+      };
+      searchSuggestions.appendChild(resultElement);
+    });
+  };
+
+  return { updateWeather, updateForecast, updateResults };
 })();
 
 export default view;

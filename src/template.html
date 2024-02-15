@@ -8,11 +8,12 @@
   <body>
     <nav>
       <h1>Weather App!</h1>
-      <div class="form-container">
+      <div id="form-container">
         <form id="search-form">
-          <input type="text" name="query" />
+          <input type="text" name="query" id="query" autocomplete="off" />
           <button type="submit">Search</button>
         </form>
+        <div id="search-suggestions"></div>
       </div>
     </nav>
     <div id="body-container">
@@ -34,7 +35,9 @@
         </div>
       </div>
       <div id="forecast-container">
-        <div id="forecast"></div>
+        <div id="forecast">
+          <p>Search for a location to get started.</p>
+        </div>
       </div>
     </div>
     <footer>

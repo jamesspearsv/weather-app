@@ -62,7 +62,34 @@ const api = (() => {
     }
   };
 
-  return { getWeather, getForecast };
+  const getSuggestions = async (query) => {
+    const response = await fetch(
+      `http://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`
+    );
+
+    try {
+      if (!response.ok) throw `Response status ${response.status}`;
+
+      let results = [];
+
+      const data = await response.json();
+      data.forEach((obj) => {
+        const result = {
+          location: obj.name,
+          region: obj.region,
+          url: obj.url,
+        };
+
+        results.push(result);
+      });
+
+      return results;
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  return { getWeather, getForecast, getSuggestions };
 })();
 
 export default api;
