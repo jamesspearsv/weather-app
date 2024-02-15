@@ -10,6 +10,7 @@ const view = (() => {
   const wind = document.getElementById("wind");
   const humidity = document.getElementById("humidity");
   const vis = document.getElementById("vis");
+  const forecastDiv = document.getElementById("forecast");
 
   const updateWeather = (weather) => {
     name.innerHTML = weather.location;
@@ -35,8 +36,21 @@ const view = (() => {
     ];
 
     forecast.forEach((day) => {
-      console.log(day);
       // todo => build forecast ui for each day returned in forecast
+      const dayDiv = document.createElement("div");
+      dayDiv.classList.add("day");
+      forecastDiv.appendChild(dayDiv);
+
+      const dateDiv = document.createElement("div");
+      dateDiv.classList.add("day-date");
+      forecastDiv.appendChild(dateDiv);
+
+      const dayOfTheWeek = document.createElement("span");
+      dayOfTheWeek.innerHTML = week[new Date(day.date).getDay];
+      const dateContent = document.createElement("span");
+      dateContent.innerHTML = day.date;
+      dateDiv.appendChild(dayOfTheWeek);
+      dateDiv.appendChild(dateContent);
     });
   };
 
