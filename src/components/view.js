@@ -1,6 +1,7 @@
+import utilities from "./utilities";
+
 const view = (() => {
   // constants
-  const currentWeather = document.getElementById("current-weather");
   const name = document.getElementById("name");
   const region = document.getElementById("region");
   const currentConditions = document.getElementById("current-conditions");
@@ -10,7 +11,7 @@ const view = (() => {
   const wind = document.getElementById("wind");
   const humidity = document.getElementById("humidity");
   const vis = document.getElementById("vis");
-  const forecastDiv = document.getElementById("forecast");
+  const forecastElement = document.getElementById("forecast");
 
   const updateWeather = (weather) => {
     name.innerHTML = weather.location;
@@ -25,32 +26,44 @@ const view = (() => {
   };
 
   const updateForecast = (forecast) => {
-    const week = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
+    utilities.removeChildren(forecastElement);
 
     forecast.forEach((day) => {
       // todo => build forecast ui for each day returned in forecast
-      const dayDiv = document.createElement("div");
-      dayDiv.classList.add("day");
-      forecastDiv.appendChild(dayDiv);
 
-      const dateDiv = document.createElement("div");
-      dateDiv.classList.add("day-date");
-      forecastDiv.appendChild(dateDiv);
+      console.log(day.date);
 
-      const dayOfTheWeek = document.createElement("span");
-      dayOfTheWeek.innerHTML = week[new Date(day.date).getDay];
-      const dateContent = document.createElement("span");
-      dateContent.innerHTML = day.date;
-      dateDiv.appendChild(dayOfTheWeek);
-      dateDiv.appendChild(dateContent);
+      const dayElement = document.createElement("div");
+      dayElement.classList.add("day");
+      forecastElement.appendChild(dayElement);
+
+      // Build and append weekday and date
+      const dateElement = document.createElement("div");
+      dateElement.classList.add("day-date");
+      dayElement.appendChild(dateElement);
+
+      const weekday = document.createElement("span");
+      weekday.textContent = utilities.getDay(day.date);
+      dateElement.appendChild(weekday);
+
+      const date = document.createElement("span");
+      date.textContent = utilities.parseDate(day.date);
+      dateElement.appendChild(date);
+
+      // condition icon
+      const icon = document.createElement("img");
+      icon.classList.add("day-icon");
+      icon.src = day.condition.icon;
+      dayElement.appendChild(icon);
+      // condition text
+      const condition = document.createElement("div");
+      condition.classList.add("condition");
+      condition.textContent = day.condition.text;
+      dayElement.appendChild(condition);
+      // hilo
+      // hi span
+      // lo span
+      // change of rain
     });
   };
 

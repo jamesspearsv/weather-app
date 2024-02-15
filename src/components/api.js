@@ -50,8 +50,7 @@ const api = (() => {
           low: day.day.mintemp_f,
           humidity: day.day.avghumidity,
           chanceofrain: day.day.daily_chance_of_rain,
-          condition: day.day.condition.text,
-          conditionIcon: day.day.condition.icon,
+          condition: day.day.condition,
         };
 
         forecast.push(dailyForecast);
