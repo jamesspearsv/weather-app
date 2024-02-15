@@ -29,10 +29,6 @@ const view = (() => {
     utilities.removeChildren(forecastElement);
 
     forecast.forEach((day) => {
-      // todo => build forecast ui for each day returned in forecast
-
-      console.log(day.date);
-
       const dayElement = document.createElement("div");
       dayElement.classList.add("day");
       forecastElement.appendChild(dayElement);
@@ -61,9 +57,22 @@ const view = (() => {
       condition.textContent = day.condition.text;
       dayElement.appendChild(condition);
       // hilo
+      const hilo = document.createElement("div");
+      hilo.classList.add("hilo");
+      dayElement.appendChild(hilo);
       // hi span
+      const hi = document.createElement("span");
+      hi.textContent = Math.trunc(day.hi) + "°F";
+      hilo.appendChild(hi);
       // lo span
+      const lo = document.createElement("span");
+      lo.textContent = Math.trunc(day.lo) + "°F";
+      hilo.appendChild(lo);
       // change of rain
+      const chanceOfRain = document.createElement("div");
+      chanceOfRain.classList.add("chance-of-rain");
+      chanceOfRain.textContent = day.chanceofrain + "% chance of rain";
+      dayElement.appendChild(chanceOfRain);
     });
   };
 

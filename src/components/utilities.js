@@ -11,15 +11,20 @@ const utilities = (() => {
     ];
 
     const date = new Date(input);
-    const day = week[date.getDay()];
+    const index = date.getUTCDay();
+    const day = week[index];
+    console.log(input);
+    console.log(index);
     console.log(day);
+
     return day;
   };
 
   const parseDate = (input) => {
     const date = new Date(input);
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+    console.log(day);
     return `${month}/${day}`;
   };
 
