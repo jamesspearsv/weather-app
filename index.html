@@ -7,12 +7,19 @@
   <script defer src="bundle.js"></script></head>
   <body>
     <nav>
-      <h1>Weather App!</h1>
-      <div class="form-container">
+      <button id="refresh">&#8635</button>
+      <div id="form-container">
         <form id="search-form">
-          <input type="text" name="query" />
-          <button type="submit">Search</button>
+          <div class="form-group">
+            <input type="text" name="query" id="query" autocomplete="off" 
+            placeholder="Search for a location to get started..."/>
+            <button type="submit"><span>
+              &#x26B2
+            </span>
+          </button>
+          </div>
         </form>
+        <div id="search-suggestions"></div>
       </div>
     </nav>
     <div id="body-container">
@@ -31,6 +38,10 @@
           <div id="wind"></div>
           <div id="humidity"></div>
           <div id="vis"></div>
+        </div>
+      </div>
+      <div id="forecast-container">
+        <div id="forecast">
         </div>
       </div>
     </div>
