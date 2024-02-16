@@ -6,7 +6,7 @@ const api = (() => {
   const getWeather = async (query) => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${query}&aqi=no`,
+        `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${query}&aqi=no`,
         { mode: "cors" }
       );
 
@@ -35,7 +35,7 @@ const api = (() => {
   const getForecast = async (query) => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`,
+        `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`,
         { mode: "cors" }
       );
 
@@ -65,7 +65,7 @@ const api = (() => {
 
   const getSuggestions = async (query) => {
     const response = await fetch(
-      `http://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`,
+      `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`,
       { mode: "cors" }
     );
 
