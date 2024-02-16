@@ -19,6 +19,8 @@ const view = (() => {
   const updateWeather = (weather) => {
     utilities.removeChildren(searchSuggestions);
     name.innerHTML = weather.location;
+    name.setAttribute("data-location", weather.location);
+    name.setAttribute("data-region", weather.region);
     region.innerHTML = weather.region;
     currentConditions.innerHTML = weather.conditions.text;
     conditionsIcon.src = weather.conditions.icon;

@@ -37,4 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(error);
     }
   };
+
+  const refreshButton = document.getElementById("refresh");
+  refreshButton.onclick = async () => {
+    const name = document.getElementById("name").getAttribute("data-location");
+    const region = document.getElementById("name").getAttribute("data-region");
+
+    const query = name + ", " + region;
+    const weather = await api.getWeather(query);
+    view.updateWeather(weather);
+  };
 });

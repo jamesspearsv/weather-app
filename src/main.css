@@ -1,7 +1,10 @@
 :root {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --padding: 15px;
-  --color-accent: #e0e0e0;
+  --color-primary: #98c1d9;
+  --color-accent: #cfcfcf;
+  --color-background: #ffffff;
+  --color-icons: #908e8e;
   --padding-span: 5px;
 }
 
@@ -13,14 +16,25 @@
 
 nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: var(--padding);
   justify-content: center;
   align-items: center;
-  padding: var(--padding) 30%;
+  padding: var(--padding) max(30%, 100px);
   text-align: center;
   border-bottom: solid 1px var(--color-accent);
+}
+
+#refresh {
+  border: none;
+  color: var(--color-icons);
+  background-color: transparent;
+  font-size: 20px;
+}
+
+#refresh:hover {
+  cursor: pointer;
 }
 
 #form-container {
@@ -28,11 +42,47 @@ nav {
   width: 100%;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  outline: solid var(--color-accent) 1px;
+  border-radius: 50px;
+  padding: 1px;
+  padding-right: 10px;
+}
+
+.form-group > * {
+  font-size: 16px;
+  border: none;
+}
+
+.form-group > input {
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.form-group > button {
+  transform: rotate(45deg);
+  font-size: 20px;
+  border-radius: 50px;
+  color: var(--color-icons);
+  background-color: transparent;
+}
+
+.form-group > button:hover {
+  cursor: pointer;
+}
+
 #search-suggestions {
   width: 100%;
   position: absolute;
   margin-top: 5px;
-  background-color: #ffffff;
+  background-color: var(--color-background);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +108,6 @@ div#body-container {
 }
 
 /* Current Weather Styles */
-
 #current-weather {
   display: grid;
   grid-template-rows: repeat(3, min-content);
@@ -109,9 +158,9 @@ div#body-container {
   width: min(95%, 700px);
   margin: auto;
   padding: var(--padding);
-  background-color: var(--color-accent);
   border-radius: var(--padding);
 }
+
 #forecast {
   display: flex;
   flex-direction: row;
@@ -128,6 +177,7 @@ div#body-container {
   gap: 10px;
   justify-items: center;
   align-items: center;
+  border-radius: 15px;
 }
 
 .day-date {
