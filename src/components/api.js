@@ -35,7 +35,8 @@ const api = (() => {
   const getForecast = async (query) => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`
+        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`,
+        { mode: "cors" }
       );
 
       if (!response.ok) throw `Response status: ${response.status}`;
@@ -64,7 +65,8 @@ const api = (() => {
 
   const getSuggestions = async (query) => {
     const response = await fetch(
-      `http://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`
+      `http://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`,
+      { mode: "cors" }
     );
 
     try {
